@@ -1,20 +1,74 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+// Importando as telas
+import HomeScreen from './components/HomeScreen';
+import LoginScreen from './components/LoginScreen';
+import RegistrationScreen from './components/RegistrationScreen';
+import AdminScreen from './components/AdminScreen';
+import ParticipantDetailsScreen from './components/ParticipantDetailsScreen';
+import InscrScreen from './components/InscrScreen';
+import MinhaInscricao from './components/MinhaInscricao';
+import AcompanharInscricao from './components/AcompanharInscricao';
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+<Stack.Navigator initialRouteName="Home">
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerTitle: '' }} // Remove o título, mas mantém o cabeçalho
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerTitle: '' }} // Remove o título, mas mantém o cabeçalho
+      />
+      <Stack.Screen
+        name="Registration"
+        component={RegistrationScreen}
+        options={{ headerTitle: '' }} // Remove o título, mas mantém o cabeçalho
+      />
+      <Stack.Screen
+        name="Admin"
+        component={AdminScreen}
+        options={{ headerTitle: '' }} // Remove o título, mas mantém o cabeçalho
+      />
+      <Stack.Screen
+        name="ParticipantDetails"
+        component={ParticipantDetailsScreen}
+        options={{ headerTitle: '' }} // Remove o título, mas mantém o cabeçalho
+      />
+      <Stack.Screen
+        name="InscrScreen"
+        component={InscrScreen}
+        options={{ headerTitle: '' }} // Remove o título, mas mantém o cabeçalho
+      />
+      <Stack.Screen
+        name="MinhaInscricao"
+        component={MinhaInscricao}
+        options={{ headerTitle: '' }} // Remove o título, mas mantém o cabeçalho
+      />
+      <Stack.Screen
+        name="AcompanharInscricao"
+        component={AcompanharInscricao}
+        options={{ headerTitle: '' }} // Remove o título, mas mantém o cabeçalho
+      />
+    </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });

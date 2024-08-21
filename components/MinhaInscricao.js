@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Switch, TextInput, Button, StyleSheet,  TouchableOpacity,  Image, ImageBackground } from 'react-native';
+import { View, Text, TextInput, Switch, Button, StyleSheet, TouchableOpacity, Image, ImageBackground, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 
@@ -20,8 +20,9 @@ const MinhaInscricao = () => {
     <ImageBackground 
       source={require('../assets/objects.png')} 
       style={styles.container}
-      resizeMode="cover" // Ajuste aqui para o redimensionamento desejado
+      resizeMode="cover"
     >
+    <ScrollView>
       <View style={styles.contentContainer}>
         <View style={styles.header}>
           <Text style={styles.headerText}>Minha inscrição</Text>
@@ -37,6 +38,19 @@ const MinhaInscricao = () => {
         />
         <Text style={styles.h2}>Data de nascimento</Text>
         <TextInput
+          style={styles.input}
+          value={birthdate}
+          onChangeText={setBirthdate}
+        />
+        <Text style={styles.h2}>Número celular</Text>
+        <TextInput 
+          style={styles.input}
+          value={birthdate}
+          placeholder="(xx) xxxxx-xxxx"
+          onChangeText={setBirthdate}
+        />
+        <Text style={styles.h2}>Endereço completo</Text>
+        <TextInput 
           style={styles.input}
           value={birthdate}
           onChangeText={setBirthdate}
@@ -76,7 +90,6 @@ const MinhaInscricao = () => {
           <Switch
             value={termsAccepted}
             onValueChange={setTermsAccepted}
-            style={styles.switch}
           />
           <Text style={styles.textoEspaco}>Concordo com os Termos e políticas de Privacidade.</Text>
         </View>
@@ -84,6 +97,7 @@ const MinhaInscricao = () => {
           <Text style={styles.textButton}>Salvar</Text>
         </TouchableOpacity>
       </View>
+    </ScrollView>
     </ImageBackground>
   );
 };
@@ -93,6 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
+    backgroundColor: '#FFFFFF',
   },
   contentContainer: {
     flex: 1,
@@ -116,7 +131,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 20,
     paddingLeft: 10,
-    borderRadius: 5
+    borderRadius: 5,
+    fontSize: 16
   },
   picker: {
     height: 50,
@@ -184,8 +200,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   logo: {
-    width: 180,
-    height: 180,
+    width: 250,
+    height: 250,
   },
 });
 

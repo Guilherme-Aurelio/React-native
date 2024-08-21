@@ -42,7 +42,7 @@ const AdminScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.yellowStrip}>
         <TouchableOpacity style={styles.headerButton} onPress={handleBack}>
-          <Icon name="arrow-back-outline" size={24} color="#FFFFF" />
+          <Icon name="arrow-back-outline" size={24} color="#F9AF0B" />
         </TouchableOpacity>
         <Text style={styles.title}>Inscrições</Text>
         <TouchableOpacity style={styles.headerButton}>
@@ -63,7 +63,8 @@ const AdminScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F7F7FF',
+    width: '100%',
+    height: '100%',
   },
   yellowStrip: {
     backgroundColor: '#F9AF0B', // Cor amarela

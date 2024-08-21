@@ -39,7 +39,7 @@ const LoginScreen = () => {
     style={styles.container}
     resizeMode="cover" // Ajuste aqui para o redimensionamento desejado
   >
-    <View style={styles.container}>
+    <View style={styles.contentContainer}>
     <View>
       <Text style={styles.headerText}>Acesse aqui</Text>
       <Text style={styles.welcomeText}>Bem vindo novamente!</Text>
@@ -78,10 +78,12 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
+    backgroundColor: '#FFFFFF',
+  },
+  contentContainer: {
     flex: 1,
-    padding: 20,
+    padding: 40,
     justifyContent: 'space-evenly',
-    flexdirection: 'column'
   },
   headerText: {
     fontSize: 30,

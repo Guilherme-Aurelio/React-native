@@ -1,29 +1,9 @@
----
-marp: true
-theme: 'https://raw.githubusercontent.com/rnd195/marp-community-themes/live/themes/gradient.css'
-style: |
-  section {
-    background-color: #282c34;
-    color: #214484; 
-    font-family: 'Helvetica'; 
-    font-size: 28px;
-    padding: 50px; 
-    background-image: linear-gradient(to top right, #e1c2e1 5%, #b9d5d9 95%);
-    align-items: center
-  }
-
-  img {
-  max-width: 100%
-  }
-
----
-
 # MVP - Projeto Segue-Me
 ### Prof. Dr. Valério Gutemberg
-#### :pencil: Discentes: Andriéria Dantas, Guilherme Aurélio,
+#### Discentes: Andriéria Dantas, Guilherme Aurélio,
 #### João Paulo, Kelvin Marques, Maria Gabrieli e Riane Brito
-#### :pencil: Disciplina de Projeto Integrador 2
-:pencil2: Curso de Sistemas para Internet
+#### Disciplina de Projeto Integrador 2
+Curso de Sistemas para Internet
 
 ---
 

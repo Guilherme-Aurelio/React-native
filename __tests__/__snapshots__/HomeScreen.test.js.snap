@@ -5,6 +5,7 @@ exports[`renders HomeScreen correctly 1`] = `
   accessibilityIgnoresInvertColors={true}
   style={
     {
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "height": "100%",
       "width": "100%",

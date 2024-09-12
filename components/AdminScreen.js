@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 const data = [
   { id: '1', name: 'Ana Clara Bezerra Bonifacio', dob: '01/01/1990', city: 'Natal', email: 'ana@example.com', gender: 'Feminino' },
   { id: '2', name: 'Andriéria Azevedo Dantas', dob: '25/05/2003', city: 'Natal', email: 'andrieria@example.com', gender: 'Feminino' },
-  { id: '3', name: 'João Paulo da Silva Monteiro', dob: '01/01/1990', city: 'Natal', email: 'joao@example.com', gender: 'Masculino'},
-  { id: '4', name: 'Kelvin Cristiano Marques de Lima', dob: '01/01/1990', city: 'Natal', email: 'kelvin@example.com', gender: 'Masculino'},
+  { id: '3', name: 'João Paulo da Silva Monteiro', dob: '01/01/1990', city: 'Natal', email: 'joao@example.com', gender: 'Masculino' },
+  { id: '4', name: 'Kelvin Cristiano Marques de Lima', dob: '01/01/1990', city: 'Natal', email: 'kelvin@example.com', gender: 'Masculino' },
   { id: '5', name: 'Guilherme Aurélio Ribeiro Rocha', dob: '01/01/1990', city: 'Natal', email: 'gui@example.com', gender: 'Masculino' },
   { id: '6', name: 'Maria Gabrieli de Moura Rodrigues', dob: '15/03/2004', city: 'João Câmara', email: 'gabrieli@example.com', gender: 'Feminino' },
   { id: '7', name: 'Emilly Jeniffer Martins dos Santos', dob: '01/01/1990', city: 'Natal', email: 'emilly@example.com', gender: 'Feminino' },
@@ -41,12 +40,10 @@ const AdminScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.yellowStrip}>
-        <TouchableOpacity style={styles.headerButton} onPress={handleBack}>
-          <Icon name="arrow-back-outline" size={24} color="#F9AF0B" />
+        <TouchableOpacity style={styles.headerButton} onPress={handleBack} testID="back-button">
         </TouchableOpacity>
         <Text style={styles.title}>Inscrições</Text>
-        <TouchableOpacity style={styles.headerButton}>
-          <Icon name="log-out-outline" size={24} color="#FFFFF" />
+        <TouchableOpacity style={styles.headerButton} testID="logout-button">
         </TouchableOpacity>
       </View>
 

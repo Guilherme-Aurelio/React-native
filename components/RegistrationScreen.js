@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ImageBackground, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import config from '../config';
 const RegistrationScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +15,7 @@ const RegistrationScreen = () => {
     }
 
     try {
-      const response = await fetch('http://10.0.2.2:3000/api/usuarios/cadastrar', {
+      const response = await fetch(`${config.backendUrl}/api/usuarios/cadastrar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

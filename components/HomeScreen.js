@@ -9,9 +9,6 @@ const HomeScreen = ({ navigation }) => {
         resizeMode="cover"
       >
         <View style={styles.contentContainer}>
-        <TouchableOpacity style={styles.adminButton} onPress={() => navigation.navigate('Admin')}>
-          <Text style={styles.textButton3}>Admin</Text>
-        </TouchableOpacity>
           <View style={styles.header}>
             <Image style={styles.logo} source={require('../assets/logomarca.png')} />
           </View>

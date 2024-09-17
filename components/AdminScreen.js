@@ -1,59 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-
-const data = [
-  { id: '1', name: 'Ana Clara Bezerra Bonifacio', dob: '01/01/1990', city: 'Natal', email: 'ana@example.com', gender: 'Feminino' },
-  { id: '2', name: 'Andriéria Azevedo Dantas', dob: '25/05/2003', city: 'Natal', email: 'andrieria@example.com', gender: 'Feminino' },
-  { id: '3', name: 'João Paulo da Silva Monteiro', dob: '01/01/1990', city: 'Natal', email: 'joao@example.com', gender: 'Masculino'},
-  { id: '4', name: 'Kelvin Cristiano Marques de Lima', dob: '01/01/1990', city: 'Natal', email: 'kelvin@example.com', gender: 'Masculino'},
-  { id: '5', name: 'Guilherme Aurélio Ribeiro Rocha', dob: '01/01/1990', city: 'Natal', email: 'gui@example.com', gender: 'Masculino' },
-  { id: '6', name: 'Maria Gabrieli de Moura Rodrigues', dob: '15/03/2004', city: 'João Câmara', email: 'gabrieli@example.com', gender: 'Feminino' },
-  { id: '7', name: 'Emilly Jeniffer Martins dos Santos', dob: '01/01/1990', city: 'Natal', email: 'emilly@example.com', gender: 'Feminino' },
-  { id: '8', name: 'Riane Ramaiane Delgado de Brito', dob: '01/01/1990', city: 'Natal', email: 'riane@example.com', gender: 'Feminino' },
-];
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import config from '../config';
 const AdminScreen = ({ navigation }) => {
-  const [selectedParticipant, setSelectedParticipant] = useState(null);
+  const [usuarios, setUsuarios] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const handlePress = (participant) => {
-    navigation.navigate('ParticipantDetails', { participant });
+  useEffect(() => {
+    const fetchUsuarios = async () => {
+      try {
+        const token = await AsyncStorage.getItem('token');
+        const response = await fetch(`${config.backendUrl}/api/usuarios/listar`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Autenticação com token
+          },
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          // Filtra usuários para excluir o admin
+          const filteredUsuarios = data.filter(user => user.email !== 'admin');
+          setUsuarios(filteredUsuarios);
+        } else {
+          console.error('Erro ao buscar usuários');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar usuários:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsuarios();
+  }, []);
+
+  const handlePress = (userId) => {
+    navigation.navigate('ParticipantDetails', { userId });
   };
 
   const handleBack = () => {
-    setSelectedParticipant(null);
+    // Ação ao voltar, se necessário
   };
 
-  const handleApprove = () => {
-    console.log('Aprovar');
+  const renderItem = ({ item }) => {
+    // Verifica se item existe
+    if (!item) {
+      return null; // Não renderiza se item for indefinido ou nulo
+    }
+
+    return (
+      <TouchableOpacity style={styles.button} onPress={() => handlePress(item.id)}>
+        {/* Garante que nome_completo esteja definido */}
+        <Text style={styles.text}>{item.nome_completo || 'Usuário sem nome'}</Text>
+      </TouchableOpacity>
+    );
   };
 
-  const handleReject = () => {
-    console.log('Recusar');
-  };
-
-  const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.button} onPress={() => handlePress(item)}>
-      <Text style={styles.text}>{item.name}</Text>
-    </TouchableOpacity>
-  );
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <Text>Carregando usuários...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.yellowStrip}>
-        <TouchableOpacity style={styles.headerButton} onPress={handleBack}>
-          <Icon name="arrow-back-outline" size={24} color="#FFFFF" />
-        </TouchableOpacity>
         <Text style={styles.title}>Inscrições</Text>
-        <TouchableOpacity style={styles.headerButton}>
-          <Icon name="log-out-outline" size={24} color="#FFFFF" />
-        </TouchableOpacity>
       </View>
 
       <FlatList
-        data={data}
+        data={usuarios}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id ? item.id.toString() : Math.random().toString()}
         contentContainerStyle={styles.listContent}
       />
     </View>
@@ -73,7 +95,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
     paddingHorizontal: 10,
-    marginTop: 60, // Afastar da parte superior
+    marginTop: 0, // Ajuste para alinhamento consistente
   },
   headerButton: {
     padding: 10,

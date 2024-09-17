@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image, ImageBackground, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import config from '../config';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -9,7 +11,7 @@ const LoginScreen = () => {
   
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://10.0.2.2:3000/api/usuarios/login', {
+      const response = await fetch(`${config.backendUrl}/api/usuarios/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -19,12 +21,21 @@ const LoginScreen = () => {
           senha: password,
         }),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.status === 200) {
-        Alert.alert('Sucesso', 'Login realizado com sucesso!');
-        navigation.navigate('InscrScreen'); // Navega para a tela de inscrições após o login bem-sucedido
+        await AsyncStorage.setItem('token', data.token);
+        await AsyncStorage.setItem('userId', data.userId.toString());
+  
+        // Verifique se as credenciais são admin
+        if (email === 'admin' && password === 'admin') {
+          Alert.alert('Sucesso', 'Login realizado com sucesso como admin!');
+          navigation.navigate('Admin'); // Navega para a tela de administração
+        } else {
+          Alert.alert('Sucesso', 'Login realizado com sucesso!');
+          navigation.navigate('InscrScreen'); // Navega para a tela de inscrições para usuários normais
+        }
       } else {
         Alert.alert('Erro', data.error || 'Erro ao realizar login.');
       }

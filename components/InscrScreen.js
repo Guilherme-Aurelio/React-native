@@ -20,10 +20,10 @@ const InscrScreen = () => {
         <View style={styles.logoContainer}>
         </View>
             <View style={styles.containerButton}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MinhaInscricao')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Inscrição')}>
           <Text style={styles.textButton}>Participar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AcompanharInscricao')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Status')}>
           <Text style={styles.textButton}>Acompanhar inscrição</Text>
         </TouchableOpacity>
       </View>

@@ -122,7 +122,6 @@ const AcompanharInscricao = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 20,
     backgroundColor: '#FFFFFF',
     width: '100%',
     height: '100%',
@@ -130,7 +129,7 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 20,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   headerTitle: {
     fontSize: 30,
@@ -144,6 +143,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     marginBottom: 30,
+    padding: 20,
   },
   infoTitle: {
     fontSize: 16,

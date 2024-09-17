@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
       flex: 1,
       width: '100%',
       height: '100%',
+      backgroundColor: '#FFFFFF',
     },
     contentContainer: {
       flex: 1,
@@ -72,7 +73,6 @@ const styles = StyleSheet.create({
       paddingHorizontal: 40,
       marginVertical: 10,
       borderRadius: 5,
-      width: '100%',
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.3,
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
     },
     containerButton: {
       justifyContent: 'center',
-      alignItems: 'center',
       marginBottom: 50,
+      width: '70%',
     },
   });
 export default InscrScreen;

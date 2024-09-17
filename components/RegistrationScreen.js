@@ -46,7 +46,7 @@ const RegistrationScreen = () => {
       style={styles.container}
       resizeMode="cover"
     >
-      <View style={styles.container}>
+      <View style={styles.contentContainer}>
         <View>
           <Text style={styles.headerText}>Criar conta</Text>
           <Text style={styles.welcomeText}>Crie uma conta para poder explorar todo o aplicativo</Text>
@@ -89,9 +89,13 @@ const styles = StyleSheet.create({
     container: {
       width: '100%',
       height: '100%',
+      backgroundColor: '#FFFFFF',
       flex: 1,
-      justifyContent: 'space-evenly',
-      padding: 20,
+    },
+    contentContainer: {
+      flex: 1,
+      padding: 40,
+      justifyContent: 'center',
     },
     headerText: {
       fontSize: 30,

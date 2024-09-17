@@ -85,7 +85,8 @@ const AdminScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F7F7FF',
+    width: '100%',
+    height: '100%',
   },
   yellowStrip: {
     backgroundColor: '#F9AF0B', // Cor amarela
